@@ -33,7 +33,9 @@
                   <td>{{ number_format(($rekapSprint->closed_point / ($rekapSprint->open_point + $rekapSprint->closed_point)) * 100, 2) }}%</td>
                   <td>-</td>
                   <td>
-                      <i class="fa-solid fa-circle-info"></i>
+                      <a href="{{route('user_stories', ['user_story_id' => $rekapSprint->id])}}">
+                          <i class="fa-solid fa-circle-info"></i>
+                      </a>
                   </td>
                 </tr>
             @endforeach

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RekapSprintController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\UserStoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,4 @@ Route::get('/', function () {
 
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('rekap-sprints/filter', [RekapSprintController::class, 'filterByProjectName'])->name('rekap_sprints.filter');
+Route::get('user_stories', [UserStoryController::class, 'index'])->name('user_stories');
