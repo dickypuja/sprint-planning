@@ -19,8 +19,11 @@ use App\Http\Controllers\UserStoryController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
-Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
-Route::get('rekap-sprints/filter', [RekapSprintController::class, 'filterByProjectName'])->name('rekap_sprints.filter');
-Route::get('user_stories', [UserStoryController::class, 'index'])->name('user_stories');
+// Route yang memerlukan autentikasi
+Route::middleware('auth')->group(function () {
+    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+    Route::get('rekap-sprints/filter', [RekapSprintController::class, 'filterByProjectName'])->name('rekap_sprints.filter');
+    Route::get('user_stories', [UserStoryController::class, 'index'])->name('user_stories');
+});

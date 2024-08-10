@@ -15,4 +15,9 @@ class UserStory extends Model
     {
         return $this->belongsTo(Milestone::class, 'milestone_id');
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'user_story_id');
+    }
 }

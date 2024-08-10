@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'users_user';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -42,4 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Define one-to-one relationship with Task
+    public function task()
+    {
+        return $this->hasOne(Task::class, 'assigned_to_id');
+    }
 }
