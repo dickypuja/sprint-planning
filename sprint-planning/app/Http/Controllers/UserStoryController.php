@@ -12,11 +12,11 @@ class UserStoryController extends Controller
      */
     public function index(Request $request)
     {
-        $userStoryId = $request->input('user_story_id');
+        $userStoryId = $request->input('milestone_id');
 
         $userStories = UserStory::when($userStoryId, function ($query, $userStoryId) {
             return $query->where('milestone_id', $userStoryId);
-        })->whereNotNull('point')->with(['tasks.user'])->orderBy('id', 'asc')->get();
+        })->whereNotNull('point')->with(['tasks.user','milestone'])->orderBy('id', 'asc')->get();
 
         return view('user_stories.index', compact('userStories'));
     }

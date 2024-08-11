@@ -19,13 +19,17 @@
         <tbody>
             @foreach($projects as $project)
                 <tr>
-                  <th scope="row">{{$project->name}}</th>
-                  <td>{{$project->milestones_count}}</td>
-                  <td>
+                    <th scope="row">
+                        <a href="https://taiga.javan.id/project/{{$project->slug}}/timeline" target="_blank">
+                            {{$project->name}}
+                        </a>
+                    </th>
+                    <td>{{$project->milestones_count}}</td>
+                    <td>
                       <a href="{{ route('rekap_sprints.filter', ['project_name' => $project->name]) }}">
                          <i class="fa-solid fa-circle-info"></i>
                       </a>
-                  </td>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

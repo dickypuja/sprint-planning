@@ -4,7 +4,8 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('projects.index')}}">Projects</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('projects.index')}}"></a></li>
+            <li class="breadcrumb-item"><a href="{{ route('rekap_sprints.filter', ['project_name' => $userStories[0]->project]) }}">{{$userStories[0]->project}}</a></li>
+            <li class="breadcrumb-item"><a href="#">{{($userStories[0]->milestone->name)}}</a></li>
         </ol>
     </nav>
 
@@ -20,13 +21,21 @@
         <tbody>
             @foreach($userStories as $userStory)
                 <tr>
-                  <td >{{$userStory->user_story}}</td>
+                  <td>
+                      <a href="https://taiga.javan.id/project/{{$userStories[0]->project_slug}}/us/{{$userStory->ref}}?milestone={{$userStory->milestone_id}}" target="_blank">
+                          {{$userStory->user_story}}
+                      </a>
+                  </td>
                   <td >{{$userStory->full_name}}</td>
                   <td >{{$userStory->point}}</td>
                     <td>
                       <ul>
                           @foreach($userStory->tasks as $task)
-                              <li> <bold>{{ $task->user->full_name }}</bold> - {{ $task->subject }} </li>
+                              <li>
+                                  <a href="https://taiga.javan.id/project/{{$userStories[0]->project_slug}}/task/{{$task->ref}}" target="_blank">
+                                      <bold>{{ $task->user ? $task->user->full_name : 'No User Assigned' }}</bold> - {{ $task->subject }}
+                                  </a>
+                              </li>
                           @endforeach
                       </ul>
                   </td>
